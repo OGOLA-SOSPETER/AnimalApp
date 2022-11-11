@@ -1,8 +1,10 @@
 package com.SosDeveloper.animalapp
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.Top
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,10 +31,11 @@ fun Dashboard(navController: NavController){
     OutlinedTextField(value = "", onValueChange = {},
     modifier = Modifier
         .fillMaxWidth()
+        .background(Color.White, CircleShape).fillMaxWidth()
         .padding(8.dp),
         trailingIcon = {
             Icon(painter = painterResource(R.drawable.google), contentDescription = "Google Search")
-        }
+        },
 
     )
     Text(

@@ -122,7 +122,7 @@ fun MyImages(navController: NavHostController) {
     }
 }
 
-@Preview
+@Preview()
 @Composable
 fun Preview(){
     AnimalAppTheme {
