@@ -43,7 +43,7 @@ fun Dashboard(navController: NavHostController) {
         // Creating a Top bar
         TopAppBar(
             title = { Text("DASHBOARD|AnimalApp", color = Color.White) },
-            backgroundColor = Color(0xff0f9d58),
+            backgroundColor = Color.Blue,
             actions = {
 // Creating Icon button for dropdown menu
                 IconButton(onClick = { mDisplayMenu = !mDisplayMenu }) {
@@ -53,7 +53,7 @@ fun Dashboard(navController: NavHostController) {
                 // would create a Toast message
                 IconButton(onClick = {
                     Toast.makeText(mContext, "Favorite", Toast.LENGTH_SHORT).show()
-                }) {
+                }){
                     Icon(Icons.Default.Favorite, "")
                 }
 
