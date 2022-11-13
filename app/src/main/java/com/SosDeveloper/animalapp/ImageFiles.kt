@@ -2,17 +2,17 @@ package com.SosDeveloper.animalapp
 
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -33,63 +33,63 @@ fun MyImages(navController: NavHostController) {
             Row {
 
                 Image(
-                    painter = painterResource(R.drawable.image),
+                    painter = painterResource(R.drawable.leopard),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
 
                 )
                 Image(
                     painter = painterResource(R.drawable.dog),
                     contentDescription = "image of dog",
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
 
                 )
                 Image(
                     painter = painterResource(id = R.drawable.alx),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
                 )
             }
             Row {
                 Image(
-                    painter = painterResource(id = R.drawable.african_lion_portrait_warm_light),
+                    painter = painterResource(id = R.drawable.leopards),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.elephants_drinking_water),
+                    painter = painterResource(id = R.drawable.ostritch),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
                 )
 
                 Image(
-                    painter = painterResource(R.drawable.group_elephants_big_green_tree_wilderness),
+                    painter = painterResource(R.drawable.leopard),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
-                    modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
+                    modifier = imageModifier.padding(8.dp).clip(shape = RoundedCornerShape(16.dp))
                 )
             }
             Row {
                 Image(
-                    painter = painterResource(R.drawable.lion_sitting_middle_trees_near_cactuses),
+                    painter = painterResource(R.drawable.leopards),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.male_female_lions_laying_sand_resting),
+                    painter = painterResource(R.drawable.alx),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.young_leopard_portrait),
+                    painter = painterResource(R.drawable.leopard),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
@@ -104,13 +104,13 @@ fun MyImages(navController: NavHostController) {
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.young_leopard_portrait),
+                    painter = painterResource(R.drawable.leopards),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.young_leopard_portrait),
+                    painter = painterResource(R.drawable.ostritch),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier.clip(shape = RoundedCornerShape(16.dp))
@@ -118,10 +118,15 @@ fun MyImages(navController: NavHostController) {
             }
 
         }
-
+        Button(onClick = { navController.navigate("Dashboard") }) {
+            Text(
+                "BacktoMain",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 10.dp, bottom = 1.dp)
+            )
+        }
     }
 }
-
 @Preview()
 @Composable
 fun Preview(){

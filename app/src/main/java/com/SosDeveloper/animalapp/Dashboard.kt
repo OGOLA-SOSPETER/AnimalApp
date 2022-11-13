@@ -1,17 +1,18 @@
 package com.SosDeveloper.animalapp
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -26,40 +27,67 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun Dashboard(navController: NavController){
+fun Dashboard(navController: NavController) {
+    Column(modifier = Modifier.padding(top = 0.dp)) {
+        TopAppBar(
+            elevation = 4.dp,
+            title = {
+                Text("I'm a TopAppBar")
+            },
+            backgroundColor = MaterialTheme.colors.primarySurface,
+            navigationIcon = {
+                IconButton(onClick = {navController.navigate("Login")}) {
+                    Icon(Icons.Filled.ArrowBack, null)
+                }
+            }, actions = {
+                IconButton(onClick = {/* Do Something*/ }) {
+                    Icon(Icons.Filled.Share, null)
+                }
+                IconButton(onClick = {navController.navigate("settings") }) {
+                    Icon(Icons.Filled.Settings, null)
+                }
+            })
 
-    OutlinedTextField(value = "", onValueChange = {},
-    modifier = Modifier
-        .fillMaxWidth()
-        .background(Color.White, CircleShape).fillMaxWidth()
-        .padding(8.dp),
-        trailingIcon = {
-            Icon(painter = painterResource(R.drawable.google), contentDescription = "Google Search")
-        },
+        Text("Hello World")
 
-    )
-    Text(
-        text = "Welcome to my Dashboard",
-        textAlign = TextAlign.Center
+    }
+    Column (modifier = Modifier.padding(100.dp)){
+        OutlinedTextField(
+            value = "", onValueChange = {},
+            modifier = Modifier
+                .background(Color.White, CircleShape).fillMaxWidth()
+                .padding(8.dp),
+            trailingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.google),
+                    contentDescription = "Google Search"
+                )
+            },
 
-    )
-
-    Text(text = "I love Animals")
-
-
-    Button(onClick = {navController.navigate("Images")}) {
+            )
         Text(
-            "MyImages",
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = 10.dp, bottom = 1.dp)
+            text = "Welcome to my Dashboard",
+            textAlign = TextAlign.Center
+
         )
 
-        Icon(
-            painter = painterResource(R.drawable.google),
-            contentDescription = "My Icon",
-            modifier = Modifier.align(Top)
-                .size(70.dp)
-                .clip(RoundedCornerShape(16.dp))
-        )
+        Text(text = "I love Animals")
+
+
+        Button(onClick = { navController.navigate("Images") }) {
+            Text(
+                "MyImages",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 10.dp, bottom = 1.dp)
+            )
+
+            Icon(
+                painter = painterResource(R.drawable.google),
+                contentDescription = "My Icon",
+                modifier = Modifier.align(Top)
+                    .size(70.dp)
+                    .clip(RoundedCornerShape(16.dp))
+            )
+        }
     }
-    }
+}

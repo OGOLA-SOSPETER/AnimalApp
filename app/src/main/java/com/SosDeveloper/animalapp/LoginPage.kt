@@ -3,6 +3,7 @@ package com.SosDeveloper.animalapp
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
@@ -112,6 +113,21 @@ fun LoginUI(navController: NavHostController) {
                         modifier = Modifier.padding(top = 1.dp, bottom = 1.dp)
                     )
                 }
+        Text(
+            AnnotatedString(            text = "Or login with"
+            ),
+            textAlign = TextAlign.Center,
+            fontSize = 15.sp,
+        modifier = Modifier.fillMaxWidth()
+        )
+        Button(onClick = { navController.navigate("Forgot password") }) {
+            Image(
+                painter = painterResource(id = R.drawable.google),
+                contentDescription = "Google account login",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.clip(CircleShape).height(30.dp).width(30.dp)
+            )
+        }
 
         ClickableText(
             text = AnnotatedString("Forgot password?"),
