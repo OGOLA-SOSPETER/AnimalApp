@@ -18,5 +18,7 @@ fun AnimalNavigation(navController: NavHostController){
         composable("Images"){MyImages(navController)}
         composable("Forgot password"){MyImages(navController)}
         composable("Menu"){ MainContent(navController) }
+        composable("settings"){ SettingsPage(navController) }
+
     }
 }

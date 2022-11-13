@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -20,13 +21,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 @Composable
-fun Dashboard(navController: NavController) {
+fun Dashboard(navController: NavHostController) {
     Column(modifier = Modifier.padding(top = 0.dp)) {
 
 
@@ -39,10 +42,13 @@ fun Dashboard(navController: NavController) {
 
         // Creating a Top bar
         TopAppBar(
-            title = { Text("DASHBOARD| Main_Page", color = Color.White) },
+            title = { Text("DASHBOARD|AnimalApp", color = Color.White) },
             backgroundColor = Color(0xff0f9d58),
             actions = {
-
+// Creating Icon button for dropdown menu
+                IconButton(onClick = { mDisplayMenu = !mDisplayMenu }) {
+                    Icon(Icons.Default.Menu, "MainMenu")
+                }
                 // Creating Icon button favorites, on click
                 // would create a Toast message
                 IconButton(onClick = {
@@ -51,10 +57,7 @@ fun Dashboard(navController: NavController) {
                     Icon(Icons.Default.Favorite, "")
                 }
 
-                // Creating Icon button for dropdown menu
-                IconButton(onClick = { mDisplayMenu = !mDisplayMenu }) {
-                    Icon(Icons.Default.Menu, "MainMenu")
-                }
+
 
                 // Creating a dropdown menu
                 DropdownMenu(
@@ -64,26 +67,29 @@ fun Dashboard(navController: NavController) {
 
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {
-                        Toast.makeText(
-                            mContext,
-                            "Settings",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }) {
-                        Text(text = "Settings")
+                    DropdownMenuItem(onClick = {navController.navigate("settings")}) {
+                        ClickableText(text = AnnotatedString("Settings"), onClick = {navController.navigate("settings")})
                     }
 
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {
-                        Toast.makeText(
-                            mContext,
-                            "Logout",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }) {
-                        Text(text = "Logout")
+                    DropdownMenuItem(onClick = {navController.navigate("Login")}){
+                        ClickableText(text = AnnotatedString("BackToLogin"), onClick = {navController.navigate("Login")})
+                    }
+
+                    // Creating dropdown menu item, on click
+                    // would create a Toast message
+                    DropdownMenuItem(onClick = {navController.navigate("Images")}) {
+                        ClickableText(text = AnnotatedString(text = "PHOTOS"), onClick = {navController.navigate("Images")})
+
+                    }
+
+
+                    // Creating dropdown menu item, on click
+                    // would go to password reset
+                    DropdownMenuItem(onClick = {navController.navigate("Forgot password")}) {
+                        ClickableText(text = AnnotatedString(text = "Password Reset"), onClick = {navController.navigate("Forgot Password")})
+
                     }
                 }
             }
