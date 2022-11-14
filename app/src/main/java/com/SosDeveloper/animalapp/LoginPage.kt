@@ -77,7 +77,7 @@ fun LoginUI(navController: NavHostController) {
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.Monospace,
-            color = Color.Cyan,
+            color = Color.Magenta,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.fillMaxWidth()
 

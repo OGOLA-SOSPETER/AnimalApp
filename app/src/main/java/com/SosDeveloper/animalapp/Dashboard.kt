@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -43,7 +44,7 @@ fun Dashboard(navController: NavHostController) {
         // Creating a Top bar
         TopAppBar(
             title = { Text("DASHBOARD|AnimalApp", color = Color.White) },
-            backgroundColor = Color.Blue,
+            backgroundColor = Color.White,
             actions = {
 // Creating Icon button for dropdown menu
                 IconButton(onClick = { mDisplayMenu = !mDisplayMenu }) {
@@ -54,7 +55,11 @@ fun Dashboard(navController: NavHostController) {
                 IconButton(onClick = {
                     Toast.makeText(mContext, "Favorite", Toast.LENGTH_SHORT).show()
                 }){
-                    Icon(Icons.Default.Favorite, "")
+                    Icon(
+                        Icons.Default.Favorite,
+                        "Favorite Icon",
+                        modifier = Modifier.background(color = Color.Red)
+                    )
                 }
 
 
@@ -65,17 +70,7 @@ fun Dashboard(navController: NavHostController) {
                     onDismissRequest = { mDisplayMenu = false }
                 ) {
 
-                    // Creating dropdown menu item, on click
-                    // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("settings")}) {
-                        ClickableText(text = AnnotatedString("Settings"), onClick = {navController.navigate("settings")})
-                    }
 
-                    // Creating dropdown menu item, on click
-                    // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("Login")}){
-                        ClickableText(text = AnnotatedString("BackToLogin"), onClick = {navController.navigate("Login")})
-                    }
 
                     // Creating dropdown menu item, on click
                     // would create a Toast message
@@ -91,6 +86,25 @@ fun Dashboard(navController: NavHostController) {
                         ClickableText(text = AnnotatedString(text = "Password Reset"), onClick = {navController.navigate("Forgot Password")})
 
                     }
+                    // Creating dropdown menu item, on click
+                    // would create a Toast message
+                    DropdownMenuItem(onClick = {navController.navigate("Images")}) {
+                        ClickableText(text = AnnotatedString(text = "ABOUT"), onClick = {navController.navigate("About")})
+
+                    }
+
+                    // Creating dropdown menu item, on click
+                    // would create a Toast message
+                    DropdownMenuItem(onClick = {navController.navigate("settings")}) {
+                        ClickableText(text = AnnotatedString("Settings"), onClick = {navController.navigate("settings")})
+                    }
+
+                    // Creating dropdown menu item, on click
+                    // would create a Toast message
+                    DropdownMenuItem(onClick = {navController.navigate("Login")}){
+                        ClickableText(text = AnnotatedString("Logout"), onClick = {navController.navigate("Login")})
+                    }
+
                 }
             }
         )
