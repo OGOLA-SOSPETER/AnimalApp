@@ -1,6 +1,7 @@
 package com.SosDeveloper.animalapp
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,9 @@ import androidx.compose.ui.Alignment.Companion.Top
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -43,7 +47,7 @@ fun Dashboard(navController: NavHostController) {
 
         // Creating a Top bar
         TopAppBar(
-            title = { Text("DASHBOARD|AnimalApp", color = Color.White) },
+            title = { Text("        AnimalApp", color = Color.Black) },
             backgroundColor = Color.White,
             actions = {
 // Creating Icon button for dropdown menu
@@ -58,7 +62,7 @@ fun Dashboard(navController: NavHostController) {
                     Icon(
                         Icons.Default.Favorite,
                         "Favorite Icon",
-                        modifier = Modifier.background(color = Color.Red)
+                        modifier = Modifier.pointerHoverIcon(icon = PointerIcon(4))
                     )
                 }
 
@@ -110,4 +114,14 @@ fun Dashboard(navController: NavHostController) {
         )
 
     }
+    Column(Modifier.padding(20.dp)) {
+        Text(text = AnnotatedString("Welcome to the animals page\n\nI love animals"))
+    }
+
+    Image(
+        painter = painterResource(id = R.drawable.ostritch),
+        contentDescription = "my ostrich",
+        contentScale = ContentScale.Crop,
+    modifier = Modifier.clip(RoundedCornerShape(18.dp))
+        )
 }
