@@ -3,10 +3,7 @@ package com.SosDeveloper.animalapp
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -114,14 +111,15 @@ fun Dashboard(navController: NavHostController) {
         )
 
     }
-    Column(Modifier.padding(20.dp)) {
+    Column(Modifier.padding(top = 100.dp)) {
         Text(text = AnnotatedString("Welcome to the animals page\n\nI love animals"))
     }
 
     Image(
-        painter = painterResource(id = R.drawable.ostritch),
+        painter = painterResource(id = R.drawable.dog),
+        alignment = Alignment.Center,
         contentDescription = "my ostrich",
         contentScale = ContentScale.Crop,
-    modifier = Modifier.clip(RoundedCornerShape(18.dp))
+    modifier = Modifier.height(50.dp).width(50.dp).clip(RoundedCornerShape(18.dp))
         )
 }
