@@ -120,12 +120,15 @@ fun LoginUI(navController: NavHostController) {
             fontSize = 15.sp,
         modifier = Modifier.fillMaxWidth()
         )
-        Button(onClick = { navController.navigate("Forgot password") }) {
+        OutlinedButton(onClick = { navController.navigate("Forgot password") }, modifier = Modifier.height(30.dp).width(40.dp)) {
             Image(
                 painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google account login",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.clip(CircleShape).height(30.dp).width(30.dp)
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .height(50.dp)
+                    .width(50.dp)
             )
         }
 

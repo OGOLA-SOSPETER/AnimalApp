@@ -2,7 +2,6 @@ package com.SosDeveloper.animalapp
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,23 +11,21 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.Top
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.SosDeveloper.animalapp.ui.theme.Shapes
 
 @Composable
 fun Dashboard(navController: NavHostController) {
@@ -68,7 +65,7 @@ fun Dashboard(navController: NavHostController) {
                 // Creating a dropdown menu
                 DropdownMenu(
                     expanded = mDisplayMenu,
-                    onDismissRequest = { mDisplayMenu = false }
+                    onDismissRequest = { mDisplayMenu = true }
                 ) {
 
 
@@ -112,14 +109,29 @@ fun Dashboard(navController: NavHostController) {
 
     }
     Column(Modifier.padding(top = 100.dp)) {
+        Image(
+            painter = painterResource(R.drawable.leopard),
+            modifier = Modifier.height(200.dp).fillMaxWidth(),
+            contentDescription = "Background image"
+        )
         Text(text = AnnotatedString("Welcome to the animals page\n\nI love animals"))
     }
-
+Column (Modifier.padding(top = 200.dp)){
     Image(
         painter = painterResource(id = R.drawable.dog),
         alignment = Alignment.Center,
-        contentDescription = "my ostrich",
+        contentDescription = "my dog",
         contentScale = ContentScale.Crop,
-    modifier = Modifier.height(50.dp).width(50.dp).clip(RoundedCornerShape(18.dp))
-        )
+        modifier = Modifier
+            .height(70.dp)
+            .width(70.dp)
+            .clip(CircleShape)
+            .padding(all = 5.dp)
+    )
+}
+}
+@Preview
+@Composable
+fun DashboardPreview(){
+    Dashboard(navController = rememberNavController())
 }

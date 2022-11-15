@@ -20,6 +20,8 @@ fun AnimalNavigation(navController: NavHostController){
         composable("Menu"){ MainContent(navController) }
         composable("settings"){ SettingsPage(navController) }
         composable("About"){AboutApp(navController)}
+        composable("Share"){ ShareOptions(navController) }
+
 
     }
 }

@@ -52,7 +52,7 @@ Box {
     )
     Text(
         text = "Leopard",
-    color = Color.White,
+    color = Color.Blue,
         modifier = Modifier.padding(top=90.dp,start = 23.dp)
     )
 }
@@ -68,7 +68,7 @@ Box {
                     )
                     Text(
                         text = "Dog",
-                        color = Color.White,
+                        color = Color.Blue,
                         modifier = Modifier.padding(top=90.dp,start = 38.dp)
                     )
                 }
@@ -83,7 +83,7 @@ Box {
                     )
                     Text(
                         text = "Developer",
-                        color = Color.White,
+                        color = Color.Blue,
                         modifier = Modifier.padding(top=90.dp,start = 20.dp)
                     )
                 }
@@ -95,7 +95,7 @@ Box {
             }
             Row {
                 Image(
-                    painter = painterResource(id = R.drawable.african_lion_portrait_warm_light),
+                    painter = painterResource(id = R.drawable.c1),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -104,7 +104,7 @@ Box {
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.young_leopard_portrait),
+                    painter = painterResource(id = R.drawable.c2),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -113,7 +113,7 @@ Box {
                 )
 
                 Image(
-                    painter = painterResource(R.drawable.leopard),
+                    painter = painterResource(R.drawable.c3),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -123,7 +123,7 @@ Box {
             }
             Row {
                 Image(
-                    painter = painterResource(R.drawable.leopards),
+                    painter = painterResource(R.drawable.c4),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -131,7 +131,7 @@ Box {
                         .clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.alx),
+                    painter = painterResource(R.drawable.c5),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -139,7 +139,7 @@ Box {
                         .clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.leopard),
+                    painter = painterResource(R.drawable.c6),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -158,7 +158,7 @@ Box {
                         .clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.leopards),
+                    painter = painterResource(R.drawable.c7),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -166,7 +166,7 @@ Box {
                         .clip(shape = RoundedCornerShape(16.dp))
                 )
                 Image(
-                    painter = painterResource(R.drawable.ostritch),
+                    painter = painterResource(R.drawable.c8),
                     contentDescription = stringResource(R.string.image_photo),
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier
@@ -190,18 +190,19 @@ Box {
 
         }
     }
-    Box{
-        Icon(
-            modifier = Modifier.size(34.dp),
-            imageVector = ImageVector.vectorResource(id = R.drawable.leopards),
-            contentDescription = "Some icon",
-            tint = Color.White
-        )
-    }
+    //Box{
+        //Icon(
+            //modifier = Modifier.size(34.dp),
+            //imageVector = ImageVector.vectorResource(id = R.drawable.leopards),
+            //contentDescription = "Some icon",
+            //tint = Color.White
+        //)
+    //}
 }
+
 @Preview()
 @Composable
-fun Preview(){
+fun MyImagePreview(){
     AnimalAppTheme {
 MyImages(navController = rememberNavController())
     }
