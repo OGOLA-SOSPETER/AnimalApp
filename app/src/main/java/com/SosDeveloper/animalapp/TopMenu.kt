@@ -38,38 +38,53 @@ fun MainContent(navController: NavController) {
 TopAppBar(
 elevation = 4.dp,
 title = {
-    Text("  TopMenu", color = Color.Green)
+    Text("  TopMenu", color = Color.White)
 },
-backgroundColor = MaterialTheme.colors.background,
+backgroundColor = Color.Blue,
 navigationIcon = {
-    IconButton(onClick = {navController.navigate("Login")}) {
-        Icon(Icons.Filled.ArrowBack, null)
+    IconButton(onClick = {navController.navigate("Dashboard")}) {
+        Icon(
+            Icons.Filled.ArrowBack,
+            null,
+            tint = Color.White
+
+        )
     }
 }, actions = {
     IconButton(onClick = {navController.navigate("Share" )}) {
-        Icon(Icons.Filled.Share, null)
+        Icon(
+            Icons.Filled.Share,
+            null,
+            tint = Color.White
+
+        )
     }
     IconButton(onClick = {navController.navigate("settings") }) {
-        Icon(Icons.Filled.Settings, null)
+        Icon(
+            Icons.Filled.Settings,
+            null,
+            tint = Color.White
+        )
     }
 })
 
 Column (modifier=Modifier.padding(top = 70.dp)) {
     OutlinedTextField(
-        value = "Ask me anything", onValueChange = {},
+        value = "", onValueChange = {},
         modifier = Modifier
             .background(Color.White, RoundedCornerShape(16.dp))
             .fillMaxWidth()
             .height(30.dp)
             .padding(8.dp),
         trailingIcon = {
-            Icon(
+            Image(
                 painter = painterResource(R.drawable.google),
                 contentDescription = "Google Search",
                 modifier = Modifier
                     .align(Alignment.Start)
                     .height(30.dp)
                     .width(30.dp)
+
             )
         },
 

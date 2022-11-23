@@ -4,8 +4,8 @@ package com.SosDeveloper.animalapp
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,12 +19,15 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
@@ -40,7 +43,7 @@ fun LoginUI(navController: NavHostController) {
     ) {
 
 
-        val image = painterResource(R.drawable.dog).apply {
+        val image = painterResource(R.drawable.tech).apply {
             val rainbowColorsBrush = remember {
                 Brush.sweepGradient(
                     listOf(
@@ -58,18 +61,18 @@ fun LoginUI(navController: NavHostController) {
 
 
             Image(
-                painter = painterResource(id = R.drawable.dog),
-                contentDescription = "My image",
+                painter = this,
+                contentDescription = "logo",
                 alignment = Alignment.TopCenter,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .padding(10.dp)
                     .border(
                         BorderStroke(width = (2.dp), rainbowColorsBrush),
-                        RoundedCornerShape(16.dp)
+                        CircleShape
                     )
                     .size(100.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(CircleShape)
             )
         }
         Text(
@@ -96,6 +99,13 @@ fun LoginUI(navController: NavHostController) {
         OutlinedTextField(
             value = passwordValue,
             onValueChange = { passwordValue = it },
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
+            trailingIcon = {
+                Image(
+                    painter = painterResource(id = R.drawable.eye),
+                    contentDescription = "trailing-image"
+                )
+                           },
             label = { Text("Enter the password") },
 
             modifier = Modifier
@@ -120,7 +130,9 @@ fun LoginUI(navController: NavHostController) {
             fontSize = 15.sp,
         modifier = Modifier.fillMaxWidth()
         )
-        OutlinedButton(onClick = { navController.navigate("Forgot password") }, modifier = Modifier.height(30.dp).width(40.dp)) {
+        OutlinedButton(onClick = { navController.navigate("Forgot password") }, modifier = Modifier
+            .height(30.dp)
+            .width(40.dp)) {
             Image(
                 painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google account login",
@@ -148,7 +160,7 @@ fun LoginUI(navController: NavHostController) {
             .padding(start = 150.dp)) {
             ClickableText(
                 text = AnnotatedString("Register"),
-                onClick = { },
+                onClick = { navController.navigate("Registration")},
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color.Blue,
@@ -159,4 +171,10 @@ fun LoginUI(navController: NavHostController) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ImagePreviewer(){
+    LoginUI(navController = rememberNavController())
 }
