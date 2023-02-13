@@ -1,21 +1,24 @@
 package com.SosDeveloper.animalapp
 
 import android.widget.Toast
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerIcon
-import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -44,7 +47,14 @@ fun Dashboard(navController: NavHostController) {
         // Creating a Top bar
         TopAppBar(
 
-            title = { Text("        AnimalApp", color = Color.White, fontFamily = FontFamily.Cursive, fontWeight = FontWeight(30)) },
+            title = {
+                Text(
+                    "        AnimalApp",
+                    color = Color.White,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight(30)
+                )
+            },
             backgroundColor = Color.Blue,
             actions = {
 // Creating Icon button for dropdown menu
@@ -56,14 +66,13 @@ fun Dashboard(navController: NavHostController) {
                 IconButton(onClick = {
                     Toast.makeText(mContext, "Favorite", Toast.LENGTH_SHORT).show()
 
-                }){
+                }) {
                     Icon(
                         Icons.Default.Favorite,
                         "Favorite Icon",
                         tint = Color.Red,
                     )
                 }
-
 
 
                 // Creating a dropdown menu
@@ -73,316 +82,789 @@ fun Dashboard(navController: NavHostController) {
                 ) {
 
 
-
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("Images")}) {
-                        ClickableText(text = AnnotatedString(text = "PHOTOS"), onClick = {navController.navigate("Images")})
+                    DropdownMenuItem(onClick = { navController.navigate("Domestic") }) {
+                        ClickableText(
+                            text = AnnotatedString(text = "DOMESTIC-ANIMALS"),
+                            onClick = { navController.navigate("Domestic") })
 
                     }
+                    DropdownMenuItem(onClick = { navController.navigate("WildAnim") }) {
+                        ClickableText(
+                            text = AnnotatedString(text = "WILD-ANIMALS"),
+                            onClick = { navController.navigate("WildAnim") })
 
+                    }
 
                     // Creating dropdown menu item, on click
                     // would go to password reset
-                    DropdownMenuItem(onClick = {navController.navigate("Forgot password")}) {
-                        ClickableText(text = AnnotatedString(text = "Password Reset"), onClick = {navController.navigate("Forgot Password")})
+                    DropdownMenuItem(onClick = { navController.navigate("Forgot password") }) {
+                        ClickableText(
+                            text = AnnotatedString(text = "Password Reset"),
+                            onClick = { navController.navigate("Forgot Password") })
 
                     }
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("About")}) {
-                        ClickableText(text = AnnotatedString(text = "About"), onClick = {navController.navigate("About")})
+                    DropdownMenuItem(onClick = { navController.navigate("About") }) {
+                        ClickableText(
+                            text = AnnotatedString(text = "About"),
+                            onClick = { navController.navigate("About") })
 
                     }
 
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("settings")}) {
-                        ClickableText(text = AnnotatedString("Settings"), onClick = {navController.navigate("settings")})
+                    DropdownMenuItem(onClick = { navController.navigate("settings") }) {
+                        ClickableText(
+                            text = AnnotatedString("Settings"),
+                            onClick = { navController.navigate("settings") })
                     }
-
+                    DropdownMenuItem(onClick = { navController.navigate("Privacy Policy") }) {
+                        ClickableText(
+                            text = AnnotatedString("Privacy Policy"),
+                            onClick = { navController.navigate("Privacy Policy") })
+                    }
                     // Creating dropdown menu item, on click
                     // would create a Toast message
-                    DropdownMenuItem(onClick = {navController.navigate("Login")}){
-                        ClickableText(text = AnnotatedString("Logout"), onClick = {navController.navigate("Login")})
+                    DropdownMenuItem(onClick = { navController.navigate("Login") }) {
+                        ClickableText(
+                            text = AnnotatedString("Logout"),
+                            onClick = { navController.navigate("Login") })
                     }
 
                 }
             }
         )
-    }
-
-    Column(Modifier.padding(top = 60.dp)) {
-
-        Image(
-            painter = painterResource(R.drawable.rainbow),
-            contentDescription = "Background image",
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-
-                .height(200.dp)
-                .width(600.dp)
-                .clip(
-                    RoundedCornerShape(1.dp)
-
-
-                )
-        )
-
-    }
-    Column(modifier = Modifier.padding(top = 140.dp,start = 50.dp)) {
-        Text(
-            text = "Welcome to the animals page\n" +
-                    "I love animals",
-            color = Color.White,
-            fontSize = 30.sp,
-            fontFamily = FontFamily.Cursive
-
-        )
-        Column (Modifier.padding(top = 20.dp,start = 120.dp)){
+        Box {
             Image(
-                painter = painterResource(id = R.drawable.young_leopard_portrait),
-                alignment = Alignment.Center,
-                contentDescription = "",
+                painter = painterResource(id = R.drawable.zebra1),
+                contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .height(70.dp)
-                    .width(70.dp)
-                    .clip(CircleShape)
+                    .size(width = 700.dp, height = 200.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 0.dp,
+                            topEnd = 0.dp,
+                            bottomStart = 50.dp,
+                            bottomEnd = 50.dp
+                        )
+                    )
+            )
+            Column(modifier=Modifier) {
+                Row(modifier = Modifier.padding(start = 260.dp)) {
+                    Image(
+                        painter = painterResource(id = R.drawable.chicken),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                    )
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Row (modifier = Modifier.padding(start = 310.dp)) {
+                    Image(
+                        painter = painterResource(id = R.drawable.goat),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                    )
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Row (modifier = Modifier.padding(start = 260.dp)) {
+                    Image(
+                        painter = painterResource(id = R.drawable.cats),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                    )
+                }
+}
+
+
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Column(Modifier.verticalScroll(state = ScrollState(3), enabled = true)) {
+
+            Text(
+                text = "The Rhino",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+
+                item {
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.rhino),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+
+                            Text(text = "Rhinoceros", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                items(2) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.rhinoos),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+
+                            Text(text = "Rhinoceroses", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                items(2) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.rhino),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+
+                            Text(text = "Rhinoceros", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+            Text(
+                text = "The Dog",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                item {
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.dog),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Dog", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                items(4) { index ->
+                    Box{
+                        Column{
+                            Image(
+                        painter = painterResource(id = R.drawable.dogggy),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(100.dp)
+                            .clip(shape = RoundedCornerShape(4.dp))
+
+                    )
+                    Text(text = "German Shepherd", modifier = Modifier.padding(start =10.dp))
+                }
+            }
+                }
+            }
+
+            Text(
+                text = "The Lion",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.lionn),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Lion", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                items(3) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.lion),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Lionesses", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.lioon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(100.dp)
+                                .clip(shape = RoundedCornerShape(4.dp))
+
+                        )
+                        Text(text = "Lion", modifier = Modifier.padding(start = 10.dp))
+                    }
+                }
+            }
+
+
+            Text(
+                text = "The Zebra",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                items(5) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.zebra1),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Zebra", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+
+            Text(
+                text = "The Antelope",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                items(5) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.antellops),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Antelope", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+
+            Text(
+                text = "The Elephant",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.elephantt),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Elephant", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.elephant),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(
+                                text = "Elephants drinking water",
+                                modifier = Modifier.padding(start = 10.dp)
+                            )
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.elephant1),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Elephants", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.elephant2),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Elephants", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.elephantst),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Elephants", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+
+            Text(
+                text = "The Buffalo",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                items(5) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.buffalo),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Buffalos", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+
+            Text(
+                text = "The Leopard",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.leopard1),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(
+                                text = "Leopard on a tree",
+                                modifier = Modifier.padding(start = 10.dp)
+                            )
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.leopard),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Leopard", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.leopard1),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Leopard", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.leopard2),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Leopard", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.leopard2),
+                                contentDescription = null,
+                                Modifier.size(110.dp)
+                            )
+                            Text(text = "Leopard view", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+
+            Text(
+                text = "The Giraffe",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                item {
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.giraffe),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Giraffe", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.giraffe1),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Giraffe", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.giraffes),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Giraffe", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+                item {
+                    Box {
+                        Column {
+
+                            Image(
+                                painter = painterResource(id = R.drawable.giraffe),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Giraffe", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+            Text(
+                text = "The Antezelle😂😂",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                items(5) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.mh),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Antezelle", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+            Text(
+                text = "The Monkey",
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+            LazyRow(
+                modifier = Modifier.padding(start = 7.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+
+            ) {
+                items(5) { index ->
+                    Box {
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.monkey),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+
+                            )
+                            Text(text = "Monkey", modifier = Modifier.padding(start = 10.dp))
+                        }
+                    }
+                }
+            }
+        }
+            PhotoGrid()
+
+    }
+
+}
+@Composable
+fun PhotoGrid() {
+    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 100.dp),
+        modifier = Modifier.padding(7.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalArrangement = Arrangement.spacedBy(15.dp)
+    )
+    {
+        items(20) {
+            Image(
+                painter = painterResource(id = R.drawable.zebra),
+                contentDescription = "dev"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.monkey),
+                contentDescription = "goat"
+            )
+            Text("Goat", fontSize = 30.sp)
+            Image(
+                painter = painterResource(id = R.drawable.rhino),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.antellops),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.giraffe),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.goat),
+                contentDescription = "goat"
             )
 
         }
-    }
-
-    /*
-    Column(){
-        Text(
-            text = "Full development will be out soon.\nSome more little patience.",
-            modifier = Modifier.padding(top = 450.dp,start = 130.dp)
-        )
-        Icon(
-            Icons.Filled.Warning,
-            "Favorite Icon",
-            tint = Color.Cyan,
-            modifier = Modifier
-                .padding(top = 20.dp, start = 170.dp)
-                .size(50.dp)
-        )
-
-    }
-    */
-    Column(modifier= Modifier
-        .padding(top = 320.dp)
-        .fillMaxSize()
-        .verticalScroll(state = ScrollState(1), enabled = true)) {
-        Box {
-            Row {
-
-                Box(modifier = Modifier
-                    .padding(top = 20.dp, start = 10.dp, end = 10.dp)
-                  ){
-                    Image(
-                        painter = painterResource(id = R.drawable.dog),
-                        contentDescription = "My Dog",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(text = "This is a dog.\nA dog is an animal that is mostly used to provide" +
-                            " security to us at home." +
-                            " Some dogs are fierce while others are always just cool." +
-                            " I love dogs, especially ones that are already trained.",
-                    textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp))
-
-                }
-            }
-            Divider(color = Color.Black, thickness = 1.dp)
-
-            Row {
-
-                Box(modifier = Modifier
-                    .padding(top = 130.dp, start = 10.dp, end = 10.dp)
-                    ){
-                    Image(
-                        painter = painterResource(id = R.drawable.chicken),
-                        contentDescription = "chicken",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(text = "The chicken is a domesticated jungle-fowl species," +
-                            " with attributes of wild species such as the grey" +
-                            " and the Ceylon junglefowl that are originally " +
-                            "from Southeastern Asia." +
-                            "\n Rooster or cock is a term for an adult male bird, " +
-                            "and a younger male may be called a cockerel." +
-                            " \nA male that has been castrated is a capon",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp))
-
-                }
-            }
-
-
-            Row {
-                Box(modifier = Modifier
-                    .padding(top = 280.dp, start = 10.dp, end = 10.dp)
-                ){
-                    Image(
-                        painter = painterResource(id = R.drawable.goat),
-                        contentDescription = "goat",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(text = "The goat or domestic goat is a domesticated species of " +
-                            "goat-antelope typically kept as livestock. " +
-                            "\nIt was domesticated from the wild goat of Southwest Asia" +
-                            " and Eastern Europe. " +
-                            "\nThe goat is a member of the animal family Bovidae" +
-                            "and the tribe Caprini, " +
-                            "meaning it is closely related to the sheep",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp))
-
-                }
-            }
-
-            Row {
-
-                Box(
-                    modifier = Modifier
-                        .padding(top = 800.dp, start = 10.dp, end = 10.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.rainbow),
-                        contentDescription = "cat",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(
-                        text = "The cat is a domestic species of small carnivorous mammal. " +
-                                "\nIt is the only domesticated species in the family Felidae and" +
-                                " is commonly referred to as the " +
-                                "domestic cat or house cat to distinguish it from the" +
-                                " wild members of the family",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp)
-                    )
-
-                }
-            }
-            Row {
-
-                Box(
-                    modifier = Modifier
-                        .padding(top = 410.dp, start = 10.dp, end = 10.dp)
-                        .background(shape = RoundedCornerShape(18.dp), color = Color.Unspecified)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.dogggy),
-                        contentDescription = "cat",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(
-                        text = "The cat is a domestic species of small carnivorous mammal. " +
-                                "\nIt is the only domesticated species in the family Felidae and" +
-                                " is commonly referred to as the " +
-                                "domestic cat or house cat to distinguish it from the" +
-                                " wild members of the family",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp)
-                    )
-
-                }
-            }
-            Row {
-
-                Box(
-                    modifier = Modifier
-                        .padding(top = 540.dp, start = 10.dp, end = 10.dp)
-                        .background(shape = RoundedCornerShape(18.dp), color = Color.Unspecified)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.dog),
-                        contentDescription = "sheep",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(
-                        text = "Sheep or domestic sheep are domesticated," +
-                                " ruminant mammals typically kept as livestock. " +
-                                "\nAlthough the term sheep can apply to other species" +
-                                " in the genus Ovis," +
-                                " in everyday usage it almost always refers to domesticated sheep. " +
-                                "\nLike all ruminants, sheep are members " +
-                                "of the order Artiodactyla," +
-                                " the even-toed ungulates",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp)
-                    )
-
-                }
-            }
-            Row {
-
-                Box(
-                    modifier = Modifier
-                        .padding(top = 710.dp, start = 10.dp, end = 10.dp)
-                        .background(shape = RoundedCornerShape(18.dp), color = Color.Unspecified)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.goat),
-                        contentDescription = "donkey",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(60.dp)
-                    )
-                    Text(
-                        text = "The domestic donkey is a hoofed mammal in the family Equidae," +
-                                " the same family as the horse. " +
-                                "\nIt derives from the African wild ass, Equus africanus," +
-                                " and may be classified either as a subspecies thereof, " +
-                                "Equus africanus asinus," +
-                                " or as a separate species, Equus asinus",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.padding(start = 70.dp)
-                    )
-
-                }
-            }
-
-        }
-
-        @Composable
-        fun BottomBar(navController: NavHostController){
-            BottomAppBar(modifier = Modifier.background(color = Color.LightGray)) {
-                IconButton(onClick = {navController.navigate("Menu")}) {
-                    Icon(
-                        Icons.Filled.Home, contentDescription = "Home button",
-                        tint = Color.Gray,
-                        modifier = Modifier
-                            .padding(start = 160.dp)
-                            .size(35.dp)
-                    )
-                }
-
-            }
-        }
-
-
     }
 }
 

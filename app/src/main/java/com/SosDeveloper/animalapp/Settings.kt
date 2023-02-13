@@ -1,30 +1,28 @@
 package com.SosDeveloper.animalapp
 
-import android.text.Layout.Alignment
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
+
+
 @Composable
 fun SettingsPage(navController: NavHostController) {
-    Column(modifier = Modifier.background(color = Color.White)){
+    Column(modifier = Modifier.background(color = Color.LightGray)){
         TopAppBar(
             title = {
                 Text("MY Settings", color = Color.Black)
@@ -37,43 +35,92 @@ fun SettingsPage(navController: NavHostController) {
                     Icon(Icons.Filled.ArrowBack, null, modifier = Modifier.size(20.dp))
                 }
             },
-            actions = {
-                IconButton(onClick = {navController.navigate("Dashboard") }) {
+
+        )
+
+        Box(
+            Modifier
+                .background(color = Color.Gray)
+                .fillMaxSize()
+                .padding(20.dp)
+        ) {
+            Column {
+                Spacer(modifier = Modifier.height(50.dp))
+
+                Row {
+                    Icon(
+                        Icons.Filled.Settings,
+                        contentDescription = "General Settings",
+                        tint = Color.Black
+                    )
+                    Spacer(modifier = Modifier.width(20.dp))
+                    ClickableText(
+                        text = AnnotatedString("General"),
+                        onClick = {}
+                    )
                 }
+                Spacer(modifier = Modifier.height(5.dp))
+                Divider(modifier = Modifier.width(400.dp).padding(end = 10.dp), color = Color.LightGray)
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Icon(Icons.Filled.Call,
+                        contentDescription = "Sounds",
+                        tint = Color.Black)
+                    Spacer(modifier = Modifier.width(20.dp))
+                    ClickableText(
+                        text = AnnotatedString("Sounds"),
+                        onClick = {}
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(5.dp))
+                Divider(modifier = Modifier.width(400.dp).padding(end = 10.dp), color = Color.LightGray)
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(painter = painterResource(R.drawable.language),
+                        contentDescription = "App Language")
+                    Spacer(modifier = Modifier.width(20.dp))
+                    ClickableText(
+                        text = AnnotatedString("App Language"),
+                        onClick = {}
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(5.dp))
+                Divider(modifier = Modifier.width(400.dp).padding(end = 10.dp), color = Color.LightGray)
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(painter = painterResource(R.drawable.backup),
+                        contentDescription = "Backup")
+                    Spacer(modifier = Modifier.width(20.dp))
+                    ClickableText(
+                        text = AnnotatedString("Backup"),
+                        onClick = {}
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(5.dp))
+                Divider(modifier = Modifier.width(400.dp).padding(end = 10.dp), color = Color.LightGray)
+                Spacer(modifier = Modifier.height(20.dp))
+                Row {
+                    Image(painter = painterResource(R.drawable.lock),
+                        contentDescription = "Privacy"
+                        )
+                    Spacer(modifier = Modifier.width(20.dp))
+                    ClickableText(
+                        text = AnnotatedString("Privacy Center"),
+                        modifier = Modifier.padding(top = 4.dp),
+                        onClick = {navController.navigate("Privacy Policy")}
+                    )
+                }
+                Spacer(modifier = Modifier.height(5.dp))
+                Divider(modifier = Modifier.width(400.dp).padding(end = 10.dp), color = Color.LightGray)
+                Spacer(modifier = Modifier.height(20.dp))
             }
-        )
         }
-        Column(modifier = Modifier.padding(top = 140.dp, start = 90.dp)){
-            Text(
-                text = "This is my settings page.",
-                color = Color.Black
-            )
-        }
-
-    IconButton(
-        onClick = { navController.navigate("settings") },
-
-                modifier = Modifier
-                    .height(40.dp)
-                    .width(40.dp)
-                    .padding(top = 150.dp)
-
-    ) {
-
     }
 
-    Column(modifier = Modifier.padding(top = 200.dp, start = 100.dp)) {
-        Text(
-            text = "OOPS!\n Not yet set..Come later.",
-            color = Color.Black,
-        )
-        Icon(
-            Icons.Default.Warning,
-            contentDescription = "error",
-            modifier = Modifier.size(70.dp)
 
-            )
-    }
 }
 
 @Preview

@@ -1,28 +1,15 @@
 package com.SosDeveloper.animalapp
 
-import android.graphics.Paint.Align
-import android.widget.Toast
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement.End
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.End
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -38,9 +25,8 @@ fun MainContent(navController: NavController) {
 TopAppBar(
 elevation = 4.dp,
 title = {
-    Text("  TopMenu", color = Color.White)
+    Text("  Menu- Page", color = Color.White)
 },
-backgroundColor = Color.Blue,
 navigationIcon = {
     IconButton(onClick = {navController.navigate("Dashboard")}) {
         Icon(
@@ -68,62 +54,6 @@ navigationIcon = {
     }
 })
 
-Column (modifier=Modifier.padding(top = 70.dp)) {
-    OutlinedTextField(
-        value = "", onValueChange = {},
-        modifier = Modifier
-            .background(Color.White, RoundedCornerShape(16.dp))
-            .fillMaxWidth()
-            .height(30.dp)
-            .padding(8.dp),
-        trailingIcon = {
-            Image(
-                painter = painterResource(R.drawable.google),
-                contentDescription = "Google Search",
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .height(30.dp)
-                    .width(30.dp)
-
-            )
-        },
-
-        )
-    Text(
-        text = "Welcome to my Dashboard",
-        textAlign = TextAlign.Center,
-        color = Color.Green,
-        modifier = Modifier.padding(start = 70.dp, top = 30.dp)
-
-    )
-
-    Text(
-        text = "I love Animals",
-        color = Color.Green,
-        modifier = Modifier.padding(start = 120.dp, top = 10.dp)
-
-    )
-
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(start = 130.dp)) {
-        Button(onClick = { navController.navigate("Images") }) {
-            Text(
-                "Photos",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(top = 10.dp, bottom = 1.dp)
-            )
-
-            Image(
-                painter = painterResource(R.drawable.rainbow),
-                contentDescription = "My Icon",
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(top = 10.dp, start = 10.dp)
-                    .size(20.dp)
-                    .clip(RoundedCornerShape(16.dp))
-            )
-        }
-    }
-}
 }
 
 @Preview
