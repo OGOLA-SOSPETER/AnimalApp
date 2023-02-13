@@ -1,16 +1,19 @@
 package  com.SosDeveloper.animalapp
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.DefaultTintColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -27,9 +30,9 @@ var scaffoldState = rememberScaffoldState(drawerState = rememberDrawerState(Draw
       topBar = {
           TopAppBar(backgroundColor = DefaultTintColor,elevation = 4.dp) {
               IconButton(onClick = { /*TODO*/ }) {
-                  Icon(Icons.Filled.MoreVert, contentDescription ="Overflow Menu." )
+                  Icon(Icons.Filled.List, contentDescription ="Overflow Menu." )
               }
-              Text(text = "\t\tFashion House.")
+              Text(text = "\t\tSkyWay Eatery")
 
           }
       },
@@ -46,7 +49,7 @@ DashPage(navController = rememberNavController())
                   Icon(Icons.Filled.ShoppingCart, contentDescription ="Bookings." )
               }
               Spacer(modifier = Modifier.width(35.dp))
-              IconButton(onClick = { /*TODO*/ }) {
+              IconButton(onClick = {/*TODO*/  }) {
                   Icon(Icons.Filled.Search, contentDescription ="Searches" )
               }
               Spacer(modifier = Modifier.width(30.dp))
@@ -68,23 +71,44 @@ DashPage(navController = rememberNavController())
 fun DashPage(navController: NavHostController)
 {
     Column {
-        LazyRow(content = {
-            item {
-                OutlinedButton(modifier = Modifier.width(50.dp),onClick = { /*TODO*/ }) {
-                    Text(text = "Ladies")
+        val idList = mutableListOf("Beverages", "Fast Foods", "Soft Drinks", "Fries", "Fresh Juices", "Take Aways")
+        val listModifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp)
+
+        LazyRow(modifier = listModifier, horizontalArrangement = Arrangement.spacedBy(15.dp),content = {
+            items(6) { index: Int ->
+                OutlinedButton(modifier = Modifier.width(200.dp), onClick = { /*TODO*/ }) {
+                    Text(text = idList[index])
                 }
+
             }
-            item {
-                OutlinedButton(modifier = Modifier.width(50.dp),onClick = { /*TODO*/ }) {
-                    Text(text = "Men")
-                }
-            }
-            item {
-                OutlinedButton(modifier = Modifier.width(50.dp),onClick = { /*TODO*/ }) {
-                    Text(text = "Children")
-                }
-            }
+
         })
+    }
+}
+
+
+@Composable
+fun SearchBar() {
+    val (showSearchBar, setShowSearchBar) = remember { mutableStateOf(false) }
+    val (searchText, setSearchText) = remember { mutableStateOf("") }
+
+    Column {
+        if (showSearchBar) {
+            TextField(
+                value = searchText,
+                onValueChange = { setSearchText(it) },
+                label = { Text("Search") },
+                modifier = Modifier.fillMaxWidth()
+            )
+        } else {
+            Text(
+                text = "Search",
+                style = TextStyle(fontWeight = FontWeight.Bold),
+                modifier = Modifier.fillMaxWidth().clickable(onClick = { setShowSearchBar(true) })
+            )
+        }
     }
 }
 @Preview
